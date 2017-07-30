@@ -1,0 +1,23 @@
+<H1>Admin >-> Category</H1>
+
+<TABLE class="table-striped table-hover" width="100%">
+    <TBODY>
+        <TR>
+            <TH>#</TH>
+            <TH>Key</TH>
+            <TH>Name</TH>
+            <TH>Action</TH>
+        </TR>
+
+        <?php foreach ( $category as $item ){
+            echo "<TR>
+                    <td>{$item->getId()}</td>
+                    <td>{$item->getCategoryKey()}</td>
+                    <td>{$item->getCategoryName()}</td>";
+            echo '<td><a href="'. $this->url('admin/category', array('action' => 'edit', 'id' => $item->getId())) . '">Edit</a>&nbsp;&nbsp;
+                      <a href="'. $this->url('admin/category', array('action' => 'delete', 'id' => $item->getId())) . '" onclick="if (confirm(\'Delete record?\')) { document.location = this.href; } return false;">Delete</a> </td></TR>';
+            }
+        ?>
+        
+    </TBODY>
+</TABLE>
