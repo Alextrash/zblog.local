@@ -43,6 +43,12 @@ class CategoryController extends BaseController
             return array('form' => $form);
         }
         
+        if ($message){
+            $this->flashMessenger()
+                    ->setNamespace($status)
+                    ->addMessage($message);
+        }
+        
         return $this->redirect()->toRoute('admin/category');
     }
 }

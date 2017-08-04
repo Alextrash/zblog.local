@@ -3,7 +3,7 @@
 <?php
 
 $form->setAttribute('action', $this->url('admin/category', array('action' => 'add')));
-$from->prepare();
+$form->prepare();
 
 echo $this->form()->openTag($form);
 echo '<fieldset><legend>Category add</legend>';
@@ -14,20 +14,28 @@ foreach ($form as $element){
     if($element->getLabel()){
         $element->setLabelAttributes(array('class' => 'col-lg-2 control-label'));
         if(isset($attributes['required'])){
-            $element->setlabel($element->getLabel() . ' *');
+            $element->setLabel($element->getLabel() . ' *');
         }
     }
-    if(isset($attributes['type']) && $attributes['type'] == 'text')
-    {
+    if(isset($attributes['type']) && $attributes['type'] == 'text'){
         echo $this->formLabel($element);
         echo '<div class="col-lg-10">';
-        echo $this->formInput($element);
+            echo $this->formInput($element);
         echo '</div>';
     } elseif(isset($attributes['type']) && $attributes['type'] == 'textarea'){
         echo $this->formlabel($element);
         echo '<div class="col-lg-10">';
+            echo $this->formFile($element);
+        echo '</div>';
+    } else{
+        echo '<div class="col-lg-10">';
+            echo $this->formRow($element);
+        echo '</div>';            
     }
+    echo '</div>';
 }
+echo '</fieldset>';
+echo $this->form()->closeTag();
 ?>
     </div>
 </div>
