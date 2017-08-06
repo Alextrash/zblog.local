@@ -4,6 +4,7 @@ namespace Admin\Controller;
 
 use Application\Controller\BaseAdminController as BaseController;
 use Admin\Form\CategoryAddForm;
+use Blog\Entity\Category;
 
 class CategoryController extends BaseController
 {

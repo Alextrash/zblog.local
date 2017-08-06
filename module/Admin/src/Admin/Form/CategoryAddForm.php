@@ -2,20 +2,25 @@
 namespace Admin\Form;
 
 use Zend\Form\Form;
-use Zend\InputFilter\InputFilter;
+//use Zend\InputFilter\InputFilter;
 
 class CategoryAddForm extends Form {
     public function __construct($name = null) {
         parent::__construct('categoryAddForm');
         $this->setAttribute('method', 'post');
-        $this->setAttribute('calss', 'bs-example form-horizontal');
+        $this->setAttribute('class', 'bs-example form-horizontal');
         
         $this->add(array(
             'name' => 'categoryKey',
             'type' => 'Text',
             'options' => array(
+                'min' => 3,
+                'max' => 100,
+                'label' => 'Key',
+            ),
+            'attributes' => array(
                 'class' => 'form-control',
-                'required' =>'required',
+                'required' => 'required',
             ),
         ));
         
