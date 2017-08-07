@@ -1,20 +1,20 @@
 <H1>Admin >-> Category</H1>
-<a href="/admin/category/add/">Add new Category</a></ br>
+<a href="/admin/category/add/">Add new Category</a></br></br>
 
 <?php 
     $flash = $this->flashMessenger();
-    $flash->setMessageOpenFormat('<div%s>'
-            . '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">'
-            . '&times;'
-            . '</button>'
-            . '<ul><li>')
+    $flash->setMessageOpenFormat('<div%s> 
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> 
+        &times;
+        </button>
+        <ul><li>')
             ->setMessageSeparatorString('</li><li>')
             ->setMessageCloseString('</li></ul></div>');
 
-    $flash->render('error', array('alert', 'alert-dismissable', 'alert-danger'));
-    $flash->render('info', array('alert', 'alert-dismissable', 'alert-ingo'));
-    $flash->render('default', array('alert', 'alert-dismissable', 'alert-warning'));
-    $flash->render('success', array('alert', 'alert-dismissable', 'alert-success'));
+   echo $flash->render('error', array('alert', 'alert-dismissable', 'alert-danger'));
+   echo $flash->render('info', array('alert', 'alert-dismissable', 'alert-info'));
+   echo $flash->render('default', array('alert', 'alert-dismissable', 'alert-warning'));
+   echo $flash->render('success', array('alert', 'alert-dismissable', 'alert-success'));
 ?>
 <TABLE class="table-striped table-hover" width="100%">
     <TBODY>
