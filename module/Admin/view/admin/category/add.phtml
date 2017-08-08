@@ -23,7 +23,12 @@ foreach ($form as $element){
             echo $this->formInput($element);
         echo '</div>';
     } elseif(isset($attributes['type']) && $attributes['type'] == 'textarea'){
-        echo $this->formlabel($element);
+        echo $this->formLabel($element);
+        echo '<div class="col-lg-10">';
+            echo $this->formTextArea($element);
+        echo '</div>';
+    } elseif(isset($attributes['type']) && $attributes['type'] == 'file'){
+        echo $this->formLabel($element);
         echo '<div class="col-lg-10">';
             echo $this->formFile($element);
         echo '</div>';

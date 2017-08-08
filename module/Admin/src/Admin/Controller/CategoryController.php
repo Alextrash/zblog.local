@@ -8,16 +8,14 @@ use Blog\Entity\Category;
 
 class CategoryController extends BaseController
 {
-    public function indexAction()
-    {
+    public function indexAction(){
+        
         $query = $this->getEntityManager()->createQuery('SELECT u FROM Blog\Entity\Category u ORDER BY u.id DESC');
         $rows = $query->getResult();
-        
-        //var_dump($rows); die();
         return array('category' => $rows);
     }
     
-    public function addAction() {
+    public function addAction(){
         
         $form = new CategoryAddForm;
         $status = $message = '';
