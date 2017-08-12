@@ -19,7 +19,6 @@ class CategoryController extends BaseController
         
         $form = new CategoryAddForm;
         $status = $message = '';
-        
         $em = $this->getEntityManager();
         $request = $this->getRequest();
         
@@ -45,7 +44,7 @@ class CategoryController extends BaseController
         if ($message){
             $this->flashMessenger()
                     ->setNamespace($status)
-                    ->addMessage($message);
+                        ->addMessage($message);
         }
         
         return $this->redirect()->toRoute('admin/category');
@@ -64,7 +63,7 @@ class CategoryController extends BaseController
             $status = 'error';
             $this->flashMessenger()
                     ->setNamespace($status)
-                    ->addMessage($message);
+                        ->addMessage($message);
             return $this->redirect()->toRoute('admin/category');
         }
         
@@ -97,7 +96,7 @@ class CategoryController extends BaseController
         if($message){
             $this->flashMessenger()
                     ->setNamespace($status)
-                    ->addMessage($message);
+                        ->addMessage($message);
         }
         
         return $this->redirect()->toRoute('admin/category');
@@ -109,5 +108,20 @@ class CategoryController extends BaseController
         
         $status = 'success';
         $message = 'Record was deleted';
+        
+        try {
+            $repository = $em->getRepository('Blog\Entity\Category');
+            $category = $repository->find($id);
+            $em->remove($category);
+            $em->flush();
+        } catch (\Exception $ex) {
+            $status = 'error';
+            $message = 'Category wasn\'t deleted' . $ex->getMessage();
+        }
+        
+        $this->flashMessenger()
+                ->setNamespace($status)
+                    ->addMessage($message);
+        return $this->redirect()->toRoute('admin/category');
     }
 }
