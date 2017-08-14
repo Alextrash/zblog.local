@@ -1,1 +1,54 @@
 <H1>Admin > Articles</H1>
+<a href="/admin/article/add/">Add new Article</a></br></br>
+
+<?php 
+    $flash = $this->flashMessenger();
+    $flash->setMessageOpenFormat('<div%s> 
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> 
+        &times;
+        </button>
+        <ul><li>')
+            ->setMessageSeparatorString('</li><li>')
+            ->setMessageCloseString('</li></ul></div>');
+
+   echo $flash->render('error', array('alert', 'alert-dismissable', 'alert-danger'));
+   echo $flash->render('info', array('alert', 'alert-dismissable', 'alert-info'));
+   echo $flash->render('default', array('alert', 'alert-dismissable', 'alert-warning'));
+   echo $flash->render('success', array('alert', 'alert-dismissable', 'alert-success'));
+?>
+<TABLE class="table-striped table-hover" width="100%">
+    <TBODY>
+        <TR>
+            <TH>#</TH>
+            <TH>Category</TH>
+            <TH>Header</TH>
+            <TH>Article</TH>
+            <TH>Short Article</TH>
+            <TH>Publication state</TH>
+            <TH>Action</TH>
+        </TR>
+
+        <?php foreach ( $article as $item ){
+            $category = $item->getCatogory();
+            if ($category){
+                $catName = $category->getCategoryName();
+            } else {
+                $catName = '';
+            }
+            if ($item->getIsPublic()){
+                $isPublic = 'Yes';
+            } else {
+                $isPublic = 'No';
+            }
+            
+            echo "<TR>
+                    <td>{$item->getId()}</td>
+                    <td>{$item->getCategoryKey()}</td>
+                    <td>{$item->getCategoryName()}</td>";
+            echo '<td><a href="'. $this->url('admin/category', array('action' => 'edit', 'id' => $item->getId())) . '">Edit</a>&nbsp;&nbsp;
+                      <a href="'. $this->url('admin/category', array('action' => 'delete', 'id' => $item->getId())) . '" onclick="if (confirm(\'Delete record?\')) { document.location = this.href; } return false;">Delete</a> </td></TR>';
+            }
+        ?>
+        
+    </TBODY>
+</TABLE>
