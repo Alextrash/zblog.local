@@ -33,8 +33,8 @@ return array(
                             'defaults' => array(
                                 'controller' => 'category',
                                 'action' => 'index'
-                            ),
-                        ),
+                            )
+                        )
                     ),
                     'article' => array(
                         'type' => 'segment',
@@ -43,9 +43,9 @@ return array(
                             'defaults' => array(
                                 'controller' => 'article',
                                 'action' => 'index'
-                            ),
-                        ),
-                    ),
+                            )
+                        )
+                    )
                 ), //< child_routes
             ),
         ),

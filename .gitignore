@@ -10,3 +10,5 @@ composer.lock
 vendor/
 !vendor/README.md
 !vendor/ZF2/
+!/vendor/
+!/composer.lock

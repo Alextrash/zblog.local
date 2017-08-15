@@ -28,27 +28,30 @@
             <TH>Action</TH>
         </TR>
 
-        <?php foreach ( $article as $item ){
-            $category = $item->getCatogory();
-            if ($category){
-                $catName = $category->getCategoryName();
-            } else {
-                $catName = '';
-            }
-            if ($item->getIsPublic()){
-                $isPublic = 'Yes';
-            } else {
-                $isPublic = 'No';
-            }
+<?php 
+        foreach ( $articles as $item ){
+        $category = $item->getCategory();
+        if ($category){
+            $catName = $category->getCategoryName();
+        } else {
+            $catName = '';
+        }
+        if ($item->getIsPublic()){
+            $isPublic = 'Yes';
+        } else {
+            $isPublic = 'No';
+        }
             
-            echo "<TR>
-                    <td>{$item->getId()}</td>
-                    <td>{$item->getCategoryKey()}</td>
-                    <td>{$item->getCategoryName()}</td>";
-            echo '<td><a href="'. $this->url('admin/category', array('action' => 'edit', 'id' => $item->getId())) . '">Edit</a>&nbsp;&nbsp;
-                      <a href="'. $this->url('admin/category', array('action' => 'delete', 'id' => $item->getId())) . '" onclick="if (confirm(\'Delete record?\')) { document.location = this.href; } return false;">Delete</a> </td></TR>';
-            }
-        ?>
-        
+        echo "<TR>
+                <td>{$item->getId()}</td>
+                <td>{$catName}</td>
+                <td>{$item->getTitle()}</td>
+                <td>{$item->getArticleForTable()}</td>                    
+                <td>{$item->getShortArticleForTable()}</td>
+                <td>{$isPublic}</td>";
+        echo '<td><a href="'. $this->url('admin/article', array('action' => 'edit', 'id' => $item->getId())) . '">Edit</a>&nbsp;&nbsp;
+                  <a href="'. $this->url('admin/article', array('action' => 'delete', 'id' => $item->getId())) . '" onclick="if (confirm(\'Delete record?\')) { document.location = this.href; } return false;">Delete</a> </td></TR>';
+    }
+?>
     </TBODY>
 </TABLE>

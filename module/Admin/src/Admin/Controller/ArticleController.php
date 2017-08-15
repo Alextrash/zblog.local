@@ -20,7 +20,7 @@ class ArticleController extends BaseController
         $paginator = new Paginator($adapter);
         $paginator->setDefaultItemCountPerPage(10);
         $paginator->setCurrentPageNumber((int) $this->params()->fromQuery('page', 1));
-        
-        return array('articles', $paginator);
+
+        return array('articles' => $paginator);
     }
 }
