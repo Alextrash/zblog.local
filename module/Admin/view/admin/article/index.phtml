@@ -55,3 +55,8 @@
 ?>
     </TBODY>
 </TABLE>
+
+<?php
+echo 	$this->paginationControl($articles,
+				'Sliding',
+				'pagination_control', array('route' => 'admin/article'));
