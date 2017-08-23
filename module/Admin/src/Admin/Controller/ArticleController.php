@@ -1,14 +1,14 @@
 <?php
-namespace Admin\Controller;
-use Application\Controller\BaseAdminController as BaseController;
 
+namespace Admin\Controller;
+
+use Application\Controller\BaseAdminController as BaseController;
 use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator as DoctrineAdapter;
 use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
 use Zend\Paginator\Paginator;
-
 use Blog\Entity\Article;
 use Admin\Form\ArticleAddForm;
-use DcotrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
+use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 
 class ArticleController extends BaseController
 {
@@ -28,15 +28,15 @@ class ArticleController extends BaseController
         return array('articles' => $paginator);
     }
     
-    public function addAction (){
+    public function addAction(){
         $em = $this->getEntityManager();
         $form = new ArticleAddForm($em);
         
-        
-        
         $request = $this->getRequest();
         if($request->isPost()){
-            $message = $status = getPost();
+            $message = $status = '';
+            
+            $data = $request->getPost();
             
             $article = new Article();
             $form->setHydrator(new DoctrineHydrator($em, '\Article'));
@@ -69,5 +69,11 @@ class ArticleController extends BaseController
                     ->addMessage($message);
         }
         return $this->redirect()->toRoute('admin/article');
+    }
+    
+    public function editAction(){
+        $em = $this->getEntityManager();
+        $form = new ArticleAddForm($em);
+        
     }
 }

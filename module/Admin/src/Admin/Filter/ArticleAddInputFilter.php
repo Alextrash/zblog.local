@@ -10,7 +10,7 @@ class ArticleAddInputFilter extends InputFilter {
         $this->add(array(
             'name' => 'title',
             'required' => true,
-            'validstors' => array(
+            'validators' => array(
                 array(
                     'name' => 'StringLength',
                     'options' => array(
@@ -28,7 +28,7 @@ class ArticleAddInputFilter extends InputFilter {
         $this->add(array(
             'name' => 'shortArticle',
             'required' => false,
-            'validstors' => array(
+            'validators' => array(
                 array(
                     'name' => 'StringLength',
                     'options' => array(

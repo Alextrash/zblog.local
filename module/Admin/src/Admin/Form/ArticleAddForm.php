@@ -1,55 +1,55 @@
 <?php
+
 namespace Admin\Form;
 
 use Zend\Form\Form;
-use Zend\Form\Element;
-
+//use Zend\Form\Element;
 use DoctrineModule\Persistence\ObjectManagerAwareInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-
 use Admin\Filter\ArticleAddInputFilter;
-use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
-use Blog\Entity\Article;
+//use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
+//use Blog\Entity\Article;
 
 class ArticleAddForm extends Form implements ObjectManagerAwareInterface {
+
     protected $objectManager;
-    
-    public function setObjectManager(ObjectManager $objectManager){
+
+    public function setObjectManager(ObjectManager $objectManager) {
         $this->objectManager = $objectManager;
     }
-    
-    public function getObjectManager(){
+
+    public function getObjectManager() {
         return $this->objectManager;
     }
-    
-    public function __construct(ObjectManager $objectManager){
+
+    public function __construct(ObjectManager $objectManager) {
         parent::__construct('articleAddForm');
         $this->setObjectManager($objectManager);
         $this->createElements();
     }
-    
-    public function createElements(){
+
+    public function createElements() {
         $this->setAttribute('method', 'post');
         $this->setAttribute('class', 'bs-example form-horizontal');
-        
+
         $this->setInputFilter(new ArticleAddInputFilter());
-        
+
         $this->add(array(
             'type' => 'DoctrineModule\Form\Element\ObjectSelect',
             'name' => 'category',
             'options' => array(
                 'label' => 'Category',
                 'empty_option' => 'Select Category',
-                'ojbect_manager' => $this->getObjectManager(),
+                'object_manager' => $this->getObjectManager(),
                 'target_class' => 'Blog\Entity\Category',
                 'property' => 'categoryName',
             ),
             'attributes' => array(
-                    'class' => 'form-control',
-                    'required' => 'required',
+                'class' => 'form-control',
+                'required' => 'required',
             )
         ));
-        
+
         $this->add(array(
             'type' => 'Text',
             'name' => 'title',
@@ -58,35 +58,35 @@ class ArticleAddForm extends Form implements ObjectManagerAwareInterface {
                 'max' => 100,
                 'label' => 'Title'
             ),
-             'attributes' => array(
+            'attributes' => array(
                 'class' => 'form-control',
                 'required' => 'required',
             )
         ));
-        
+
         $this->add(array(
             'type' => 'Textarea',
             'name' => 'shortArticle',
             'options' => array(
                 'label' => 'Shot article'
             ),
-             'attributes' => array(
+            'attributes' => array(
                 'class' => 'form-control ckeditor',
             ),
         ));
-        
+
         $this->add(array(
             'type' => 'Textarea',
             'name' => 'article',
             'options' => array(
                 'label' => 'Article'
             ),
-             'attributes' => array(
+            'attributes' => array(
                 'class' => 'form-control ckeditor',
             ),
         ));
-        
-         $this->add(array(
+
+        $this->add(array(
             'type' => 'Checkbox',
             'name' => 'isPublic',
             'options' => array(
@@ -96,7 +96,7 @@ class ArticleAddForm extends Form implements ObjectManagerAwareInterface {
                 'unchecked_value' => 0,
             ),
         ));
-        
+
         $this->add(array(
             'type' => 'Submit',
             'name' => 'submit',
@@ -107,4 +107,5 @@ class ArticleAddForm extends Form implements ObjectManagerAwareInterface {
             ),
         ));
     }
+
 }

@@ -2,11 +2,11 @@
     <div class="well">
 <?php
 
-$form->setAttribute('action', $this->url('admin/article', array('action' => 'add')));
+$form->setAttribute('action', $this->url('admin/article', array('action' => 'edit', 'id' => $id)));
 $form->prepare();
 
 echo $this->form()->openTag($form);
-echo '<fieldset><legend>Article add</legend>';
+echo '<fieldset><legend>Article edit</legend>';
 foreach ($form as $element){
     echo '<div class="form-group">';
     $attributes = $element->getAttributes();
