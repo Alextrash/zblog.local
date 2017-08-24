@@ -123,4 +123,27 @@ class ArticleController extends BaseController
         
         return $this->redirect()->toRoute('admin/article');
     }
+    
+    public function deleteAction(){
+        
+        $em = $this->getEntityManager();
+        $id = (int) $this->params()->fromRoute('id', 0);
+        $status = 'success';
+        $message = 'Record was deleted';
+        
+        try {
+            $repository = $em->getRepository('Blog\Entity\Article');
+            $article = $repository->find($id);
+            $em->remove($article);
+            $em->flush();
+        } catch (\Exception $ex) {
+            $status = 'error';
+            $message = 'Category wasn\'t deleted' . $ex->getMessage();
+        }
+        
+        $this->flashMessenger()
+                ->setNamespace($status)
+                    ->addMessage($message);
+        return $this->redirect()->toRoute('admin/article');
+    }
 }
