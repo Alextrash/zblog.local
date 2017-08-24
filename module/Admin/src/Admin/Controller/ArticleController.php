@@ -88,22 +88,23 @@ class ArticleController extends BaseController
             return $this->redirect()->toRoute('admin/article');
         }
         
+        $form->setHydrator(new DoctrineHydrator($em, '\Article'));
         $form->bind($article);
-        $request = $this->getRequest();
         
+        $request = $this->getRequest();
         if($request->isPost()){
             $data = $request->getPost();
             $form->setData($data);
             
             if($form->isValid()){
-                $em->persist($category);
+                $em->persist($article);
                 $em->flush();
                 
                 $status = 'success';
-                $message = 'Category was updated';
+                $message = 'Article was updated';
             } else {
                 $status = 'error';
-                $message = 'Category wasn\'t updated. Parameter\'s error!';
+                $message = 'Article wasn\'t updated. Parameter\'s error!';
                 foreach ($form->getInputFilter()->getInvalidInput() as $errors){
                     foreach($errors->getMessages() as $error){
                         $message .= ' ' . $error;
