@@ -11,6 +11,7 @@ foreach ($form as $element){
     echo '<div class="form-group">';
     $attributes = $element->getAttributes();
     
+    //genegation label-caption  part
     $label = '';
     if($element->getLabel()){
         $label = $element->getLabel();
@@ -22,6 +23,7 @@ foreach ($form as $element){
         $label = "<label class='col-lg-2 control-label'>{$label}</label>";
     }
     
+    //generation form-elements part
     $type = isset($attributes['type']) ? $attributes['type'] : '';
     $formElement = '';
     switch ($type){
@@ -39,6 +41,8 @@ foreach ($form as $element){
                 $label = '';
                 break;
     }
+    
+    //pullout label and current element to screen
     echo "{$label}<div class='col-lg-10'>{$formElement}</div>";
     echo '</div>';
 }
