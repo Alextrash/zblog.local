@@ -51,6 +51,60 @@ return array(
         ),
     ),
     
+    'service_manager' => array(
+        'factories' => array(
+            'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
+            'admin_navigation' => 'Admin\Lib\AdminNavigationFactory',
+        ),
+    ),
+    
+    'navigation' => array(
+        'default' => array(
+            array(
+                'label' => 'Main',
+                'route' => 'home',
+            ),
+        ),
+        
+        'admin_navigation' => array(
+            array(
+                'label' => 'Control Panel',
+                'route' => 'admin',
+                'action' => 'index',
+                'resource' => 'Admin\Controller\Index',
+                
+                'pages' => array(
+                    array(
+                        'label' => 'Articles',
+                        'route' => 'admin/article',
+                        'action' => 'index',
+                    ),
+                    array(
+                        'label' => 'Add article',
+                        'route' => 'admin/article',
+                        'action' => 'add',
+                    ),
+                    array(
+                        'label' => 'Categories',
+                        'route' => 'admin/category',
+                        'action' => 'index',
+                    ),
+                    array(
+                        'label' => 'Add category',
+                        'route' => 'admin/category',
+                        'action' => 'add',
+                    ),
+ //                   array(
+ //                       'label' => 'Comments',
+ //                       'route' => 'admin/comment',
+  //                      'action' => 'index',
+  //                  ),
+                ),
+                
+            ),
+        ),
+    ),
+    
     'view_manager' => array(
         'template_path_stack' => array(
             __DIR__ . '/../view',
