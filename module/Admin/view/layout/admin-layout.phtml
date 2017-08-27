@@ -37,15 +37,12 @@
                     <a class="navbar-brand" href="<?php echo $this->url('home') ?>"><img src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="Zend Framework 2"/>&nbsp;<?php echo $this->translate('Skeleton Application') ?></a>
                 </div>
                 <div class="collapse navbar-collapse">
-                    <?php echo $this->navigation('navigation')->menu()->setUlClass('nav navbar-nav'); ?>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/admin/">Admin</a></li>
-                    </ul>
+                    <?php echo $this->navigation('admin_navigation')->menu()->setUlClass('nav navbar-nav')->renderSubMenu(); ?>
                 </div><!--/.nav-collapse -->
             </div>
         </nav>
         <div class="container">
-            <?php echo '<br><br>' . $this->navigation('navigation')->breadcrumbs(); ?>
+            <?php echo '<br><br>' . $this->navigation('admin_navigation')->breadcrumbs(); ?>
             <?php echo $this->content; ?>
             <hr>
             <footer>
