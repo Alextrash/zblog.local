@@ -34,7 +34,7 @@ class IndexController extends BaseController
         return array('articles' => $paginator);
     }
     
-    public function getCommentForm(Comment $comment){
+    protected function getCommentForm(Comment $comment){
         $builder = new AnnotationBuilder($this->getEntityManager());
         $form = $builder->createForm(new Comment());
         $form->setHydrator(new DoctrineHydrator($this->getEntityManager(), '\Comment'));

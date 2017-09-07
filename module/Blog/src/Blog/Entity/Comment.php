@@ -28,9 +28,9 @@ class Comment
      *
      * @ORM\Column(name="user_email", type="string", length=50, nullable=false)
      * @Annotation\Type("Zend\Form\Element\Email")
-     * @Annotation\Options({"label":"Email")
+     * @Annotation\Options({"label":"Email"})
      * @Annotation\Required({"required":"true"})
-     * @Annitation\Attributes({"id":"user_email", "class":"form-control", "required":"required"})
+     * @Annotation\Attributes({"id":"user_email", "class":"form-control", "required":"required"})
      * @Annotation\Validator({"name":"EmailAddress"})
      */
     private $userEmail;
@@ -42,9 +42,9 @@ class Comment
      * @Annotation\Type("Zend\Form\Element\Textarea")
      * @Annotation\Required({"required":"true"})
      * @Annotation\Filter({"name":"StripTags"})
-     * @Annitation\Attributes({"id":"user_comment", "class":"form-control", "required":"required"})
-     * @Annotation\Options({"label":"Comment")
-     * @Annotation\Validator({"name":"StringLenght", "options":{"min":11, "max":30}})
+     * @Annotation\Attributes({"id":"user_comment", "class":"form-control", "required":"required"})
+     * @Annotation\Options({"label":"Comment"})
+     * @Annotation\Validator({"name":"StringLength", "options":{"min":11, "max":30}})
      */
     private $comment;
 
@@ -55,14 +55,14 @@ class Comment
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="article", referencedColumnName="id")
      * })
-     * @Annotation\Options({"label":"Comment")
+     * @Annotation\Options({"label":"Comment"})
      */
     private $article;
     
     /** 
      * @Annotation\Type("Zend\Form\Element\Submit")
-     * @Annitation\Attributes({"value":"Save", "id":"btn_submit", "class":"btn-primary"})
-     * @Annotation\AllowEmpty("allowempty":"true")
+     * @Annotation\Attributes({"value":"Save", "id":"btn_submit", "class":"btn-primary"})
+     * @Annotation\AllowEmpty({"allowempty":"true"})
      */
     public $submit;
 

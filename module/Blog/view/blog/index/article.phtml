@@ -40,9 +40,47 @@ echo $this->form()->openTag($form);
         
 echo $this->formRow($form->get('submit'));
 echo '</fieldset>';
-echo $this->form->closeTag();
+echo $this->form()->closeTag();
 ?>
-        
-        
+
     </div>
+</div>
+
+<script>
+    $(function(){
+    $("form#comment").submit(function(){
+        var fData = $('#comment').serialize();
+        $.ajax({
+            url: '/comment-add/',
+            type: 'post',
+            dataType: 'json',
+            data: fData,
+            success: function(data){
+                if(data['success'] == 1){
+                    
+                    $('#new-comment-email h3').html($('#user_email').val());
+                    $('#new-comment-body').html($('#user_comment').val());
+                    $('#new-comment').show());
+                    
+                    $('.bs-docs-section').hide('slow'));
+                    $('#no-comments').hide());
+                
+                } else {
+                    $('#comment-errors').html('');
+                    for (var key in data){
+                         $('#comment-errors').append('<span>' +data[key]+'</span>');
+                    }
+                }
+                
+            }
+        })
+        return false;
+    });
+});
+</script>
+
+
+<div id="new-comment" class="panel panel-success" style="display: none">
+    <div id="new-comment-email" class="panel-heading"><h3 class="panel-title"></h3></div>
+    <div id="new-comment-body" class="panel-body"></div>
 </div>
