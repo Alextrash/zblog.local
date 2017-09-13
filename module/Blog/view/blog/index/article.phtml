@@ -60,24 +60,43 @@ echo $this->form()->closeTag();
                     
                     $('#new-comment-email h3').html($('#user_email').val());
                     $('#new-comment-body').html($('#user_comment').val());
-                    $('#new-comment').show());
+                    $('#new-comment').show();
                     
-                    $('.bs-docs-section').hide('slow'));
-                    $('#no-comments').hide());
+                    $('.bs-docs-section').hide('slow');
+                    $('#no-comments').hide();
                 
                 } else {
-                    $('#comment-errors').html('');
+                    $("#comment_errors").html('');
                     for (var key in data){
-                         $('#comment-errors').append('<span>' +data[key]+'</span>');
+                         $("#comment_errors").append('<span>'+data[key]+'</span>');
                     }
                 }
-                
             }
-        })
+        });
         return false;
     });
 });
 </script>
+<?php
+$comments = $article->getComments();
+
+$commentCnt = $comments->count();
+if($commentCnt){
+    echo "<h3> Comments ({$commentCnt})</h3>";
+    foreach ($comments as $comment){
+        echo "<div class='panel panel-default'>
+                <div class='panel-heading'>
+                    {$comment->getUserEmail()}
+                </div>
+                <div class='panel-body'>
+                    {$comment->getComment()}
+                </div>
+            </div>";
+    }
+} else {
+    echo "<h3 id='no-comments'> No comments for this article. Place your comment first!</h3>";
+}
+?>
 
 
 <div id="new-comment" class="panel panel-success" style="display: none">

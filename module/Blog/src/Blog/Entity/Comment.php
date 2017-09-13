@@ -5,11 +5,12 @@ namespace Blog\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Zend\Form\Annotation;
 
-/**
+/** 
  * Comment
  *
  * @ORM\Table(name="comment", uniqueConstraints={@ORM\UniqueConstraint(name="article", columns={"article"})})
  * @ORM\Entity
+ * @Annotation\Name("comment")
  */
 class Comment
 {
@@ -44,7 +45,7 @@ class Comment
      * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Attributes({"id":"user_comment", "class":"form-control", "required":"required"})
      * @Annotation\Options({"label":"Comment"})
-     * @Annotation\Validator({"name":"StringLength", "options":{"min":11, "max":30}})
+     * @Annotation\Validator({"name":"StringLength", "options":{"min":11, "max":300}})
      */
     private $comment;
 
