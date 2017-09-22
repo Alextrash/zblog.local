@@ -6,6 +6,7 @@ return array(
             'Admin\Controller\Index' => 'Admin\Controller\IndexController',
             'category' => 'Admin\Controller\CategoryController',
             'article' => 'Admin\Controller\ArticleController',
+            'comment' => 'Admin\Controller\CommentController',
             
         ),
     ),
@@ -43,9 +44,19 @@ return array(
                             'defaults' => array(
                                 'controller' => 'article',
                                 'action' => 'index'
-                            )
-                        )
-                    )
+                            ),
+                        ),
+                    ),
+                    'comment' => array(
+                        'type' => 'segment',
+                        'options' => array(
+                            'route' => 'comment/[:action/][:id/]',
+                            'defaults' => array(
+                                'controller' => 'comment',
+                                'action' => 'index'
+                            ),
+                        ),
+                    ),
                 ), //< child_routes
             ),
         ),
@@ -94,11 +105,11 @@ return array(
                         'route' => 'admin/category',
                         'action' => 'add',
                     ),
- //                   array(
- //                       'label' => 'Comments',
- //                       'route' => 'admin/comment',
-  //                      'action' => 'index',
-  //                  ),
+                    array(
+                        'label' => 'Comments',
+                        'route' => 'admin/comment',
+                        'action' => 'index',
+                    ),
                 ),
                 
             ),
